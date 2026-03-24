@@ -34,6 +34,14 @@
   <p>Up to 2 additional follow-up messages may be sent only for scheduling related to that same inquiry.</p>
   <p>Messages are sent only to the same number that placed the inbound call.</p>
 
+  <h2>IVR Disclosure Proof</h2>
+  <p>The screenshots below show the automated disclosure script included in the inbound call flow before the normal greeting.</p>
+  <p>This disclosure is played before any missed-call SMS workflow can be triggered. If the business answers the call, no SMS is sent. If the business does not answer after the disclosure is played, the missed-call SMS workflow may be triggered for that same caller.</p>
+
+  <img src="./ivr-script-proof-1.png" alt="IVR disclosure script proof part 1" style="max-width:100%;border:1px solid #ddd;border-radius:8px;margin-top:16px;" />
+
+  <img src="./ivr-script-proof-2.png" alt="IVR disclosure script proof part 2" style="max-width:100%;border:1px solid #ddd;border-radius:8px;margin-top:16px;" />
+  
   <h2>Program limits</h2>
   <p>Maximum 3 messages per inquiry.</p>
   <p>This is not a recurring subscription program.</p>
