@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMS Consent / Call to Action | TradeDesk</title>
+  <meta name="description" content="TradeDesk SMS consent and call-to-action disclosure for missed-call response campaigns." />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.6;
+      color: #111;
+    }
+    h1, h2, h3 {
+      margin-top: 32px;
+    }
+    blockquote {
+      border-left: 4px solid #ccc;
+      margin: 20px 0;
+      padding: 12px 16px;
+      background: #f8f8f8;
+    }
+    a {
+      color: #0a58ca;
+    }
+  </style>
+</head>
+<body>
+  <h1>SMS Consent / Call to Action</h1>
+  <p>Last updated: March 2026</p>
+
+  <h2>How end users consent to receive messages</h2>
+  <p>
+    End users opt in by calling the local business’s published phone number to request service.
+    Before any SMS is sent, the caller hears the following automated disclosure during the call:
+  </p>
+
+  <blockquote>
+    “Thank you for calling [Business Name]. If we miss your call, you may receive up to 3 text
+    messages related to your inquiry, including a missed-call response and scheduling follow-up.
+    Message and data rates may apply. Reply STOP to opt out and HELP for help. By continuing this
+    call, you agree to receive these messages from [Business Name]. Consent is not a condition of purchase.”
+  </blockquote>
+
+  <p>
+    SMS is sent only if the business does not answer the call after this disclosure is played.
+    Messages are sent only to the same phone number that placed the call.
+  </p>
+
+  <p>
+    No purchased lists, no web lead forms, and no third-party lead data are used for this campaign.
+  </p>
+
+  <h2>Program purpose</h2>
+  <p>
+    This messaging program is used only to respond to inbound callers requesting service from a local
+    home-service business.
+  </p>
+
+  <h2>Message frequency</h2>
+  <p>
+    1 initial missed-call response plus up to 2 follow-up scheduling messages per inquiry.
+    Maximum 3 messages per call event. This is not a recurring subscription program.
+  </p>
+
+  <h2>Sample messages</h2>
+  <p><strong>Sample message 1:</strong></p>
+  <p>
+    Hi, this is Mike’s Plumbing. Sorry we missed your call. You can book a service time here:
+    cal.com/tradedesk/service-appointment. Reply STOP to opt out, HELP for help. Msg &amp; data
+    rates may apply.
+  </p>
+
+  <p><strong>Sample message 2:</strong></p>
+  <p>
+    Hi, this is Mike’s Plumbing following up on your call. We have Thursday at 2 PM or Friday at
+    9 AM available. Reply with your preferred time or book here:
+    cal.com/tradedesk/service-appointment. Reply STOP to opt out, HELP for help. Msg &amp; data
+    rates may apply.
+  </p>
+
+  <h2>Support</h2>
+  <p>
+    For support, reply HELP to any message or contact
+    <a href="mailto:hello@tradedesk.co">hello@tradedesk.co</a>.
+  </p>
+
+  <h2>Related policies</h2>
+  <p>
+    <a href="https://amanrajjain.github.io/tradedesk-site/#privacy">Privacy Policy</a><br />
+    <a href="https://amanrajjain.github.io/tradedesk-site/#terms">Terms and Conditions</a>
+  </p>
+</body>
+</html>
