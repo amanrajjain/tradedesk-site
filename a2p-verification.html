@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operational Verification | TradeDesk</title>
+  <meta name="description" content="Operational verification for TradeDesk missed-call SMS workflow." />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.6;
+      color: #111;
+    }
+    h1, h2 {
+      margin-top: 32px;
+    }
+    a {
+      color: #0a58ca;
+    }
+  </style>
+</head>
+<body>
+  <h1>Operational Verification</h1>
+  <p>Last updated: March 2026</p>
+
+  <h2>How the workflow works</h2>
+  <p>This messaging workflow is triggered only by an inbound call to the business phone number.</p>
+  <p>The caller hears the consent disclosure before any SMS can be sent.</p>
+  <p>If the business answers the call, no SMS is sent.</p>
+  <p>If the business does not answer the call, the caller may receive 1 missed-call response SMS.</p>
+  <p>Up to 2 additional follow-up messages may be sent only for scheduling related to that same inquiry.</p>
+  <p>Messages are sent only to the same number that placed the inbound call.</p>
+
+  <h2>Program limits</h2>
+  <p>Maximum 3 messages per inquiry.</p>
+  <p>This is not a recurring subscription program.</p>
+  <p>No purchased lists, web lead forms, or third-party lead data are used.</p>
+
+  <h2>Public references</h2>
+  <p><a href="./a2p-consent.html">SMS Consent / Call to Action</a></p>
+  <p><a href="./index.html#privacy">Privacy Policy</a></p>
+  <p><a href="./index.html#terms">Terms and Conditions</a></p>
+</body>
+</html>
