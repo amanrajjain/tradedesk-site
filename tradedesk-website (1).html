@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TradeDesk — You'll never lose a job again</title>
+<meta name="description" content="One missed call a day costs trade businesses $108,000 a year. TradeDesk's AI answers in 4 rings, captures the lead, and texts your customer in 10 seconds. $197/month, 30-day free trial." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=JetBrains+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0f1117;
+  --bg-1: #161b27;
+  --bg-2: #1c2333;
+  --bg-3: #232b3d;
+  --line: rgba(255, 255, 255, 0.06);
+  --line-2: rgba(255, 255, 255, 0.1);
+  --text: #f5f4f0;
+  --text-2: #a3a3a3;
+  --text-3: #4b5563;
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.18);
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --display: 'Fraunces', serif;
+  --body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --max: 1240px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* === GRAIN OVERLAY === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* === NAV === */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.3s ease;
+}
+
+.nav.scrolled {
+  padding: 14px 32px;
+}
+
+.logo {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-cta {
+  padding: 9px 18px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) {
+    display: none;
+  }
+}
+
+/* === HERO === */
+.hero {
+  min-height: 100vh;
+  padding: 140px 32px 80px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59, 130, 246, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.4;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent 70%);
+}
+
+.hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--text-2);
+  font-weight: 500;
+  margin-bottom: 28px;
+  animation: fadeInUp 0.6s ease 0.1s backwards;
+}
+
+.hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  margin-bottom: 24px;
+  max-width: 16ch;
+  animation: fadeInUp 0.7s ease 0.2s backwards;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+}
+
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 0.05em;
+  left: 0;
+  right: 0;
+  height: 0.06em;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.hero-sub {
+  font-size: clamp(17px, 2vw, 22px);
+  color: var(--text-2);
+  max-width: 56ch;
+  line-height: 1.5;
+  margin-bottom: 40px;
+  font-weight: 400;
+  animation: fadeInUp 0.7s ease 0.3s backwards;
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.7s ease 0.4s backwards;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  padding: 16px 28px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 16px 28px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  border: 1px solid var(--line-2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+  font-size: 13px;
+  color: var(--text-3);
+  flex-wrap: wrap;
+  animation: fadeInUp 0.7s ease 0.5s backwards;
+}
+
+.hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-meta svg {
+  color: var(--green);
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === SOCIAL PROOF / STATS === */
+.proof {
+  padding: 80px 32px;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+
+.proof-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.proof-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.proof-cell {
+  background: var(--bg);
+  padding: 44px 32px;
+  text-align: center;
+}
+
+.proof-num {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.proof-num em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.proof-desc {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+@media (max-width: 600px) {
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === PROBLEM SECTION === */
+.problem {
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+}
+
+.problem-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.section-h2 em {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.problem-text p {
+  color: var(--text-2);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.problem-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--bg-1), var(--bg));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-frame {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 12px;
+  position: relative;
+}
+
+.phone-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.missed-call {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255, 59, 48, 0.06);
+  border: 1px solid rgba(255, 59, 48, 0.15);
+  border-radius: 12px;
+  animation: slideIn 0.6s ease backwards;
+}
+
+.missed-call:nth-child(1) { animation-delay: 0.1s; }
+.missed-call:nth-child(2) { animation-delay: 0.3s; }
+.missed-call:nth-child(3) { animation-delay: 0.5s; }
+.missed-call:nth-child(4) { animation-delay: 0.7s; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.missed-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 59, 48, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+  flex-shrink: 0;
+}
+
+.missed-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.missed-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.missed-detail {
+  font-size: 12px;
+  color: var(--text-3);
+  font-family: var(--mono);
+}
+
+.missed-amount {
+  font-size: 13px;
+  font-family: var(--mono);
+  color: var(--red);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .problem-inner {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}
+
+/* === HOW IT WORKS === */
+.how {
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+  background: var(--bg-1);
+  position: relative;
+}
+
+.how-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.how-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.how-header .section-label {
+  justify-content: center;
+}
+
+.how-header .section-label::before {
+  display: none;
+}
+
+.how-header .section-label::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+  margin-left: 8px;
+}
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.how-step {
+  background: var(--bg-1);
+  padding: 36px 28px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.how-step:hover {
+  background: var(--bg-2);
+}
+
+.how-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+  margin-bottom: 32px;
+  letter-spacing: 0.1em;
+}
+
+.how-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 20px;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.04);
+  color: var(--accent);
+}
+
+.how-h3 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.how-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .how-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .how-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === DEMO SECTION === */
+.demo {
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.demo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(59, 130, 246, 0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.demo-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.demo-card {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+}
+
+.demo-phone {
+  background: var(--bg);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+
+.phone-mockup {
+  width: 200px;
+  background: linear-gradient(180deg, #1a1a1a, #0a0a0a);
+  border-radius: 32px;
+  padding: 12px;
+  position: relative;
+  border: 2px solid #2a2a2a;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.phone-notch {
+  width: 60px;
+  height: 6px;
+  background: #000;
+  border-radius: 6px;
+  margin: 0 auto 12px;
+}
+
+.phone-screen {
+  background: linear-gradient(180deg, #1a2236, #0a0a0a);
+  border-radius: 22px;
+  padding: 24px 16px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.phone-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+}
+
+.phone-caller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.phone-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #60a5fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 500;
+  color: white;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05), 0 12px 32px rgba(59, 130, 246, 0.3);
+  animation: pulseRing 2s infinite;
+}
+
+@keyframes pulseRing {
+  0%, 100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05), 0 0 0 0 rgba(59, 130, 246, 0.5), 0 12px 32px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05), 0 0 0 16px rgba(59, 130, 246, 0), 0 12px 32px rgba(59, 130, 246, 0.3);
+  }
+}
+
+.phone-name {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.phone-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 4px;
+}
+
+.phone-action {
+  font-size: 12px;
+  color: var(--text-2);
+  font-style: italic;
+}
+
+.phone-buttons {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+
+.phone-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  border: none;
+}
+
+.phone-btn.decline {
+  background: var(--red);
+  color: white;
+}
+
+.phone-btn.answer {
+  background: var(--green);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.phone-btn.answer:hover {
+  transform: scale(1.1);
+}
+
+.demo-conversation {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+}
+
+.conv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+
+.conv-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.conv-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-3);
+}
+
+.conv-status-dot.live {
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 1.5s infinite;
+}
+
+.conv-timer {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.conv-messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.conv-msg {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s ease;
+}
+
+.conv-msg.shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.conv-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.conv-avatar.alex {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.conv-avatar.caller {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-2);
+  border: 1px solid var(--line-2);
+}
+
+.conv-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.conv-name {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.conv-name.alex {
+  color: var(--accent);
+}
+
+.conv-name.caller {
+  color: var(--text-2);
+}
+
+.conv-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.conv-action-bar {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.action-pill {
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.4s ease;
+}
+
+.action-pill.shown {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.action-pill .check {
+  color: var(--green);
+}
+
+.demo-controls {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .demo-card {
+    grid-template-columns: 1fr;
+  }
+  .demo-phone {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+/* === CALCULATOR === */
+.calc {
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+  background: var(--bg-1);
+}
+
+.calc-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.calc-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.calc-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.calc-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.calc-input-group label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 12px;
+}
+
+.calc-input-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.calc-input-row input[type="range"] {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  outline: none;
+}
+
+.calc-input-row input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 4px 12px rgba(59, 130, 246, 0.4);
+  transition: transform 0.15s;
+}
+
+.calc-input-row input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.calc-input-row input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.calc-input-value {
+  font-family: var(--display);
+  font-size: 28px;
+  color: var(--text);
+  font-weight: 500;
+  min-width: 100px;
+  text-align: right;
+  letter-spacing: -0.02em;
+}
+
+.calc-results {
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.02));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 16px;
+  padding: 36px;
+  text-align: center;
+}
+
+.calc-result-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.calc-result-value {
+  font-family: var(--display);
+  font-size: clamp(48px, 8vw, 84px);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin-bottom: 8px;
+  font-feature-settings: 'tnum';
+}
+
+.calc-result-value em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.calc-result-period {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 24px;
+}
+
+.calc-divider {
+  height: 1px;
+  background: rgba(59, 130, 246, 0.15);
+  margin: 24px 0;
+}
+
+.calc-savings {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.calc-savings strong {
+  color: var(--green);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .calc-card {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 32px;
+  }
+}
+
+/* === FEATURES === */
+.features {
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+}
+
+.features-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.features-header {
+  margin-bottom: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+
+.features-header-text {
+  max-width: 50ch;
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 32px;
+  background: var(--bg-1);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.feature-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-4px);
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(59, 130, 246, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: var(--accent);
+  position: relative;
+  z-index: 1;
+}
+
+.feature-h3 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .features-header {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === PRICING === */
+.pricing {
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+  background: var(--bg-1);
+}
+
+.pricing-inner {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.pricing-toggle {
+  display: inline-flex;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 4px;
+  margin-bottom: 48px;
+}
+
+.pricing-toggle button {
+  padding: 8px 20px;
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.pricing-toggle button.active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.pricing-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.05), transparent 70%);
+  pointer-events: none;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-info-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.pricing-info h3 {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.pricing-info p {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.pricing-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 32px;
+}
+
+.pricing-amount {
+  font-family: var(--display);
+  font-size: 72px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.pricing-period {
+  font-size: 16px;
+  color: var(--text-2);
+}
+
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.pricing-features svg {
+  color: var(--green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pricing-cta {
+  margin-top: 40px;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.pricing-trial {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+@media (max-width: 800px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .pricing-card {
+    padding: 32px 24px;
+  }
+}
+
+/* === FAQ === */
+.faq {
+  padding: 120px 32px;
+  border-top: 1px solid var(--line);
+}
+
+.faq-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 24px 0;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+}
+
+.faq-q:hover {
+  color: var(--accent);
+}
+
+.faq-icon {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--text-3);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.faq-item.open .faq-a {
+  max-height: 300px;
+}
+
+.faq-a-inner {
+  padding: 0 0 24px;
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* === CTA SECTION === */
+.cta {
+  padding: 140px 32px;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--bg), var(--bg-1));
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(59, 130, 246, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.cta-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta h2 {
+  font-family: var(--display);
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.cta h2 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+.cta p {
+  font-size: 18px;
+  color: var(--text-2);
+  margin-bottom: 40px;
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* === FOOTER === */
+.footer {
+  padding: 60px 32px 40px;
+  border-top: 1px solid var(--line);
+}
+
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+/* === UTILITY === */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.7s ease;
+}
+
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="logo">
+    <span class="logo-dot"></span>
+    TradeDesk
+  </a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#demo">Demo</a>
+    <a href="#calc">Calculator</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#cta" class="nav-cta">Start free trial</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Now answering calls in 47 trade businesses
+    </div>
+    <h1>You'll never <em>lose a job</em> again.</h1>
+    <p class="hero-sub">One missed call a day costs trade businesses $108,000 a year. TradeDesk's AI answers in 4 rings, captures the lead, and texts your customer in 10 seconds — so the next plumber on Google never gets the chance.</p>
+    <div class="hero-cta-row">
+      <a href="#cta" class="btn-primary">
+        Start 30-day free trial
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7.5 1.5M13 7L7.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <a href="#demo" class="btn-secondary">
+        Watch a live call
+      </a>
+    </div>
+    <div class="hero-meta">
+      <span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> No setup fee</span>
+      <span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 30-day free trial</span>
+      <span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Cancel anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="proof-inner">
+    <div class="proof-label">The math on missed calls</div>
+    <div class="proof-grid">
+      <div class="proof-cell">
+        <div class="proof-num">$<em>108K</em></div>
+        <div class="proof-desc">lost every year from one missed call a day</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-num"><em>10</em> sec</div>
+        <div class="proof-desc">before your customer gets a personalized SMS back</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-num"><em>60</em>×</div>
+        <div class="proof-desc">average return on your $197 a month</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-num"><em>0</em></div>
+        <div class="proof-desc">apps to download. ever.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="problem-inner">
+    <div class="problem-text">
+      <div class="section-label">The problem</div>
+      <h2 class="section-h2">You're under a sink. Your phone is in the truck. <em>Another job just walked away.</em></h2>
+      <p>Every missed call is a customer dialing the next plumber on Google. They don't leave a voicemail. They don't call back. They book someone else.</p>
+      <p>You've thought about hiring a receptionist. You've looked at answering services. Both cost more than the jobs they'd recover. So you keep grinding — and watching calls slip through.</p>
+      <p style="color: var(--text); font-weight: 500;">There's a better way.</p>
+    </div>
+    <div class="problem-visual">
+      <div class="phone-header">
+        <span>RECENT MISSED</span>
+        <span style="color: var(--red);">●  4 today</span>
+      </div>
+      <div class="phone-frame">
+        <div class="missed-call">
+          <div class="missed-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 5L6 9L10 5M14 9L10 5L14 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="missed-info">
+            <div class="missed-name">Burst pipe — Vienna VA</div>
+            <div class="missed-detail">+1 (703) 555-0142 · 9:24 AM</div>
+          </div>
+          <div class="missed-amount">~$650</div>
+        </div>
+        <div class="missed-call">
+          <div class="missed-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 5L6 9L10 5M14 9L10 5L14 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="missed-info">
+            <div class="missed-name">Water heater install</div>
+            <div class="missed-detail">+1 (571) 555-0188 · 10:47 AM</div>
+          </div>
+          <div class="missed-amount">~$1,400</div>
+        </div>
+        <div class="missed-call">
+          <div class="missed-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 5L6 9L10 5M14 9L10 5L14 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="missed-info">
+            <div class="missed-name">Drain clog — Reston</div>
+            <div class="missed-detail">+1 (703) 555-0231 · 1:12 PM</div>
+          </div>
+          <div class="missed-amount">~$320</div>
+        </div>
+        <div class="missed-call">
+          <div class="missed-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 5L6 9L10 5M14 9L10 5L14 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="missed-info">
+            <div class="missed-name">Leak inspection</div>
+            <div class="missed-detail">+1 (703) 555-0117 · 3:38 PM</div>
+          </div>
+          <div class="missed-amount">~$280</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="how-header">
+      <div class="section-label">How it works</div>
+      <h2 class="section-h2">Set up once. <em>Catch every call.</em></h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 16.92V19.92C20.0011 20.1985 19.9441 20.4742 19.8325 20.7293C19.7209 20.9845 19.5573 21.2136 19.3521 21.4019C19.1468 21.5901 18.9046 21.7335 18.6407 21.8227C18.3769 21.9119 18.0974 21.9451 17.82 21.92C14.7428 21.5856 11.787 20.5341 9.18999 18.85C6.77382 17.3147 4.72534 15.2662 3.18999 12.85C1.49998 10.2412 0.448243 7.27097 0.119986 4.18C0.0950113 3.90347 0.127968 3.62476 0.216622 3.36162C0.305275 3.09849 0.447668 2.85669 0.634843 2.65162C0.822018 2.44655 1.04972 2.28271 1.30414 2.17052C1.55856 2.05833 1.83346 2.00026 2.10999 2H5.10999C5.5953 1.99522 6.06579 2.16708 6.43376 2.48353C6.80173 2.79999 7.04207 3.23945 7.10999 3.72C7.23662 4.68007 7.47144 5.62273 7.80999 6.53C7.94454 6.88792 7.97366 7.27691 7.89399 7.65088C7.81431 8.02485 7.62909 8.36811 7.35999 8.64L6.08999 9.91C7.51355 12.4135 9.58652 14.4865 12.09 15.91L13.36 14.64C13.6319 14.3709 13.9751 14.1857 14.3491 14.106C14.7231 14.0263 15.1121 14.0555 15.47 14.19C16.3773 14.5286 17.3199 14.7634 18.28 14.89C18.7658 14.9585 19.2094 15.2032 19.5265 15.5775C19.8437 15.9518 20.0122 16.4296 20 16.92Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="how-h3">Forward your calls</div>
+        <div class="how-desc">Set up call forwarding in 30 seconds with one carrier code. We'll text you the right one for your phone.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <div class="how-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="how-h3">AI answers in 4 rings</div>
+        <div class="how-desc">If you don't pick up, our AI receptionist Alex answers as your business and collects the customer's details.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M16 2V6M8 2V6M3 10H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="how-h3">Customer books themselves</div>
+        <div class="how-desc">Alex texts the customer a booking link. They pick a time. It lands on your Google Calendar automatically.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <div class="how-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85997M22 4L12 14.01L9 11.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="how-h3">You show up. You get paid.</div>
+        <div class="how-desc">Show up to the job, mark it done with a text, and the customer gets your payment link. Done.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="demo" id="demo">
+  <div class="demo-inner">
+    <div class="demo-header">
+      <div class="section-label" style="display: inline-flex;">Live demo</div>
+      <h2 class="section-h2">Watch Alex answer a call.</h2>
+    </div>
+    <div class="demo-card">
+      <div class="demo-phone">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-status">INCOMING CALL</div>
+            <div class="phone-caller">
+              <div class="phone-avatar">J</div>
+              <div>
+                <div class="phone-name">Jennifer Walsh</div>
+                <div class="phone-number">+1 (703) 555-0142</div>
+              </div>
+              <div class="phone-action">Calling Mike's Plumbing...</div>
+            </div>
+            <div class="phone-buttons">
+              <button class="phone-btn decline">✕</button>
+              <button class="phone-btn answer" id="startDemo">▶</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-conversation">
+        <div class="conv-header">
+          <div class="conv-status">
+            <span class="conv-status-dot" id="statusDot"></span>
+            <span id="statusText">Click play to start the demo</span>
+          </div>
+          <div class="conv-timer" id="timer">0:00</div>
+        </div>
+        <div class="conv-messages" id="messages">
+          <div class="conv-msg" data-time="200">
+            <div class="conv-avatar alex">AI</div>
+            <div class="conv-content">
+              <div class="conv-name alex">Alex (TradeDesk AI)</div>
+              <div class="conv-text">Thanks for calling Mike's Plumbing, this is Alex. Calls are recorded for quality. How can I help you today?</div>
+            </div>
+          </div>
+          <div class="conv-msg" data-time="3500">
+            <div class="conv-avatar caller">JW</div>
+            <div class="conv-content">
+              <div class="conv-name caller">Jennifer</div>
+              <div class="conv-text">Hi, yeah I have a pipe burst under my kitchen sink. There's water everywhere.</div>
+            </div>
+          </div>
+          <div class="conv-msg" data-time="6800">
+            <div class="conv-avatar alex">AI</div>
+            <div class="conv-content">
+              <div class="conv-name alex">Alex</div>
+              <div class="conv-text">Oh no, that sounds urgent. Can you turn off the water valve under the sink first? Then let me get Mike out to you fast. What's your name and address?</div>
+            </div>
+          </div>
+          <div class="conv-msg" data-time="11000">
+            <div class="conv-avatar caller">JW</div>
+            <div class="conv-content">
+              <div class="conv-name caller">Jennifer</div>
+              <div class="conv-text">Jennifer Walsh, 142 Maple Street in Vienna.</div>
+            </div>
+          </div>
+          <div class="conv-msg" data-time="13500">
+            <div class="conv-avatar alex">AI</div>
+            <div class="conv-content">
+              <div class="conv-name alex">Alex</div>
+              <div class="conv-text">Got it Jennifer. I'm texting you a booking link right now — pick whatever time works for you and Mike will be confirmed in seconds.</div>
+            </div>
+          </div>
+          <div class="conv-msg" data-time="17000">
+            <div class="conv-avatar caller">JW</div>
+            <div class="conv-content">
+              <div class="conv-name caller">Jennifer</div>
+              <div class="conv-text">Perfect, thank you so much.</div>
+            </div>
+          </div>
+          <div class="conv-msg" data-time="19500">
+            <div class="conv-avatar alex">AI</div>
+            <div class="conv-content">
+              <div class="conv-name alex">Alex</div>
+              <div class="conv-text">You're all set. Once you pick a time, Mike will see it on his calendar and you'll both get a confirmation. Hang tight!</div>
+            </div>
+          </div>
+        </div>
+        <div class="conv-action-bar">
+          <div class="action-pill" data-time="22000">
+            <span class="check">✓</span> Lead captured
+          </div>
+          <div class="action-pill" data-time="22500">
+            <span class="check">✓</span> SMS sent to customer
+          </div>
+          <div class="action-pill" data-time="23000">
+            <span class="check">✓</span> Mike notified
+          </div>
+          <div class="action-pill" data-time="23500">
+            <span class="check">✓</span> Calendar updated
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-controls">
+      <button class="btn-secondary" id="restartDemo">↻ Restart demo</button>
+      <a href="#cta" class="btn-primary">
+        Try it for free
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7.5 1.5M13 7L7.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc" id="calc">
+  <div class="calc-inner">
+    <div class="calc-header">
+      <div class="section-label" style="display: inline-flex;">Money calculator</div>
+      <h2 class="section-h2">How much are missed calls <em>costing you?</em></h2>
+    </div>
+    <div class="calc-card">
+      <div class="calc-inputs">
+        <div class="calc-input-group">
+          <label>Missed calls per week</label>
+          <div class="calc-input-row">
+            <input type="range" id="callsSlider" min="1" max="30" value="8" />
+            <div class="calc-input-value" id="callsValue">8</div>
+          </div>
+        </div>
+        <div class="calc-input-group">
+          <label>Average job value</label>
+          <div class="calc-input-row">
+            <input type="range" id="valueSlider" min="100" max="2000" step="50" value="350" />
+            <div class="calc-input-value" id="valueValue">$350</div>
+          </div>
+        </div>
+        <div class="calc-input-group">
+          <label>Conversion rate (calls → jobs)</label>
+          <div class="calc-input-row">
+            <input type="range" id="convSlider" min="10" max="80" value="40" />
+            <div class="calc-input-value" id="convValue">40%</div>
+          </div>
+        </div>
+      </div>
+      <div class="calc-results">
+        <div class="calc-result-label">Lost monthly revenue</div>
+        <div class="calc-result-value" id="lostMonthly">$<em>5,600</em></div>
+        <div class="calc-result-period">per month, every month</div>
+        <div class="calc-divider"></div>
+        <div class="calc-savings">
+          With TradeDesk at $197/month, you'd net <strong id="netSavings">$5,403</strong> back monthly. <br>That's a <strong id="roiX">28×</strong> return on investment.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-inner">
+    <div class="features-header">
+      <div>
+        <div class="section-label">What you get</div>
+        <h2 class="section-h2">Built for the way trades <em>actually work.</em></h2>
+      </div>
+      <div class="features-header-text">
+        Not a phone system. Not a CRM. Not another tool to manage. Just a quiet, reliable assistant that catches the calls you can't.
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C9.79 2 8 3.79 8 6V14C8 16.21 9.79 18 12 18C14.21 18 16 16.21 16 14V6C16 3.79 14.21 2 12 2Z" stroke="currentColor" stroke-width="1.5"/><path d="M19 10V14C19 17.87 15.87 21 12 21C8.13 21 5 17.87 5 14V10M12 21V24M8 24H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="feature-h3">Sounds like a real person</h3>
+        <p class="feature-desc">Customers don't know they're talking to AI. Alex sounds natural, handles interruptions, and asks the right follow-up questions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="feature-h3">Handles emergencies</h3>
+        <p class="feature-desc">Burst pipe? Power outage? Alex flags emergencies as urgent so you can call back immediately — and offers same-day slots when available.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="feature-h3">Bilingual out of the box</h3>
+        <p class="feature-desc">Spanish-speaking customer? Alex handles the call in their language. SMS confirmations come through translated automatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M16 2V6M8 2V6M3 10H21M8 14H10M14 14H16M8 18H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="feature-h3">Books straight to your calendar</h3>
+        <p class="feature-desc">Connects to Google Calendar in one click. Customers pick available slots. You get push notifications. No double-bookings.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 10H22" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3 class="feature-h3">Sends payment links</h3>
+        <p class="feature-desc">Mark a job done with one text. Customer gets your Venmo, PayPal, or Stripe link automatically. You get paid faster.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 6V12L16 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="feature-h3">Recognizes returning customers</h3>
+        <p class="feature-desc">Alex remembers who's already booked, who's done, and who's calling about a previous job. No "what was your name again?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-header">
+      <div class="section-label" style="display: inline-flex;">Pricing</div>
+      <h2 class="section-h2">One job pays for <em>three months.</em></h2>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-grid">
+        <div class="pricing-info">
+          <div class="pricing-info-label">Built for solo owners and small crews</div>
+          <h3>TradeDesk Standard</h3>
+          <p>Everything you need to never miss another job. Set up in 5 minutes. Cancel anytime — no contracts, no setup fees.</p>
+          <div class="pricing-price">
+            <span class="pricing-amount">$197</span>
+            <span class="pricing-period">/ month</span>
+          </div>
+        </div>
+        <div>
+          <ul class="pricing-features">
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L6 12L14 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Unlimited inbound calls answered</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L6 12L14 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> AI receptionist customized for your business</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L6 12L14 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Google Calendar integration</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L6 12L14 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> SMS notifications for new leads</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L6 12L14 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Customer booking via text link</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L6 12L14 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Spanish-language support</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L6 12L14 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Dashboard with revenue tracking</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L6 12L14 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Payment link automation</li>
+          </ul>
+          <a href="#cta" class="btn-primary pricing-cta" style="display: flex;">Start 30-day free trial</a>
+          <div class="pricing-trial">No credit card required for trial</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="section-label" style="display: inline-flex;">Common questions</div>
+      <h2 class="section-h2">Things people ask.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Will customers know it's an AI?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Most don't. Alex sounds like a real receptionist — natural pauses, handles interruptions, asks follow-up questions. We train Alex specifically for your business so the personality fits how you'd want a receptionist to sound. Customers who do realize it's AI usually appreciate that someone is at least answering the phone.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I want to answer the call myself?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">You always pick up first. TradeDesk only kicks in if you don't answer in 4 rings. So when you're free, customers get you. When you're under a sink, Alex steps in. You stay in control.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does setup take?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">About 5 minutes. We onboard you over a quick text exchange — confirm your business details, send you a forwarding code for your carrier, and you dial it on your phone. That's it. We've onboarded plumbers in 3 minutes flat.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to change my phone number?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. You keep your existing business number. Customers call it like always. Calls you don't pick up forward to TradeDesk automatically — that's why setup is so fast.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What happens during the free trial?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">You get full access for 30 days. No credit card required upfront. You'll see exactly how many calls TradeDesk catches, how many turn into bookings, and how much revenue is recovered. Most people break even on the first job recovered. Cancel anytime, no questions asked.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if Alex says something wrong?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">You can update Alex's prompt anytime — what services to mention, how to handle pricing questions, what counts as an emergency, your business hours. Just message us with the change and we push it within one business day. Alex stays current with how your business actually operates.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="cta-inner">
+    <h2>Stop losing jobs to <em>your voicemail.</em></h2>
+    <p>Start your free 30-day trial. No credit card. No setup fee. If TradeDesk doesn't catch you at least one extra job in 30 days, we'll cancel for you.</p>
+    <div class="cta-row">
+      <a href="mailto:hi@tradedesk.co?subject=Start%20my%20free%20trial" class="btn-primary">
+        Start free trial
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7.5 1.5M13 7L7.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <a href="tel:+17712510755" class="btn-secondary">Call us: (771) 251-0755</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <a href="#" class="logo">
+        <span class="logo-dot"></span>
+        TradeDesk
+      </a>
+      <span class="footer-tag">© 2026 — Built for trades</span>
+    </div>
+    <div class="footer-links">
+      <a href="#how">How it works</a>
+      <a href="#demo">Demo</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:hi@tradedesk.co">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// === NAV SCROLL ===
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// === DEMO CONVERSATION ===
+const startDemoBtn = document.getElementById('startDemo');
+const restartBtn = document.getElementById('restartDemo');
+const messages = document.querySelectorAll('.conv-msg');
+const actionPills = document.querySelectorAll('.action-pill');
+const statusDot = document.getElementById('statusDot');
+const statusText = document.getElementById('statusText');
+const timerEl = document.getElementById('timer');
+let demoTimers = [];
+let timerInterval;
+let demoRunning = false;
+
+function resetDemo() {
+  demoTimers.forEach(t => clearTimeout(t));
+  clearInterval(timerInterval);
+  demoTimers = [];
+  messages.forEach(m => m.classList.remove('shown'));
+  actionPills.forEach(p => p.classList.remove('shown'));
+  statusDot.classList.remove('live');
+  statusText.textContent = 'Click play to start the demo';
+  timerEl.textContent = '0:00';
+  demoRunning = false;
+}
+
+function startDemo() {
+  if (demoRunning) return;
+  demoRunning = true;
+  resetDemo();
+  demoRunning = true;
+  statusDot.classList.add('live');
+  statusText.textContent = 'Live call · Mike\'s Plumbing';
+
+  let seconds = 0;
+  timerInterval = setInterval(() => {
+    seconds++;
+    const m = Math.floor(seconds / 60);
+    const s = (seconds % 60).toString().padStart(2, '0');
+    timerEl.textContent = m + ':' + s;
+  }, 1000);
+
+  messages.forEach(msg => {
+    const time = parseInt(msg.dataset.time);
+    const t = setTimeout(() => {
+      msg.classList.add('shown');
+      msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, time);
+    demoTimers.push(t);
+  });
+
+  actionPills.forEach(pill => {
+    const time = parseInt(pill.dataset.time);
+    const t = setTimeout(() => pill.classList.add('shown'), time);
+    demoTimers.push(t);
+  });
+
+  const endTimer = setTimeout(() => {
+    statusDot.classList.remove('live');
+    statusText.textContent = 'Call ended · 24 sec · Lead saved';
+    clearInterval(timerInterval);
+    demoRunning = false;
+  }, 25000);
+  demoTimers.push(endTimer);
+}
+
+startDemoBtn.addEventListener('click', startDemo);
+restartBtn.addEventListener('click', () => {
+  resetDemo();
+  setTimeout(startDemo, 200);
+});
+
+// === CALCULATOR ===
+const callsSlider = document.getElementById('callsSlider');
+const valueSlider = document.getElementById('valueSlider');
+const convSlider = document.getElementById('convSlider');
+const callsValue = document.getElementById('callsValue');
+const valueValue = document.getElementById('valueValue');
+const convValue = document.getElementById('convValue');
+const lostMonthly = document.getElementById('lostMonthly');
+const netSavings = document.getElementById('netSavings');
+const roiX = document.getElementById('roiX');
+
+function updateCalc() {
+  const calls = parseInt(callsSlider.value);
+  const value = parseInt(valueSlider.value);
+  const conv = parseInt(convSlider.value);
+
+  callsValue.textContent = calls;
+  valueValue.textContent = '$' + value.toLocaleString();
+  convValue.textContent = conv + '%';
+
+  const monthlyLost = Math.round(calls * 4.33 * value * (conv / 100));
+  const net = monthlyLost - 197;
+  const roi = Math.round(monthlyLost / 197);
+
+  lostMonthly.innerHTML = '$<em>' + monthlyLost.toLocaleString() + '</em>';
+  netSavings.textContent = '$' + Math.max(0, net).toLocaleString();
+  roiX.textContent = roi + '×';
+}
+
+callsSlider.addEventListener('input', updateCalc);
+valueSlider.addEventListener('input', updateCalc);
+convSlider.addEventListener('input', updateCalc);
+updateCalc();
+
+// === FAQ ===
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// === SECTION FADE-IN ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('section').forEach(s => {
+  if (!s.classList.contains('hero')) {
+    s.classList.add('fade-in-section');
+    observer.observe(s);
+  }
+});
+</script>
+
+</body>
+</html>
