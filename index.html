@@ -2216,8 +2216,8 @@ function updateCalc() {
   convValue.textContent = conv + '%';
 
   const monthlyLost = Math.round(calls * 4.33 * value * (conv / 100));
-  const net = monthlyLost - 197;
-  const roi = Math.round(monthlyLost / 197);
+  const net = monthlyLost - 249;
+  const roi = Math.round(monthlyLost / 249);
 
   lostMonthly.innerHTML = '$<em>' + monthlyLost.toLocaleString() + '</em>';
   netSavings.textContent = '$' + Math.max(0, net).toLocaleString();
